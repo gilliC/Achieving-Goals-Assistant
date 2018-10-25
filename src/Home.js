@@ -4,7 +4,12 @@ import {connect} from 'react-redux';
 import {counterInitialize, counterIncrease} from './reducers/counter_actions';
 import * as Progress from 'react-native-progress';
 import styled from 'styled-components/native';
-import {Title} from './components/general_components';
+import {
+  Title,
+  Body,
+  MainButton,
+  ProgressBar,
+} from './components/general_components';
 
 class Home extends Component {
   constructor(props) {
@@ -30,26 +35,26 @@ class Home extends Component {
   }
 
   onPress() {
-    console.log('clicked');
     this.props.counterIncrease();
   }
 
   render() {
-    let progress = this.state.count / 100;
+    let goal = 100;
+    let progress = this.state.count / goal;
     return (
       <View>
-        <Progress.Bar progress={0.3} width={2000} />
-        <Progress.Circle
-          progress={progress}
-          size={150}
-          thickness={10}
-          showsText={true}
-          indeterminate={false}
-          formatText={this.formatText}
-        />
-        <Progress.Pie progress={0.4} size={50} />
-        <Button onPress={this.onPress} title="Press Me" />
-        <Title>{this.state.count}</Title>
+        <Title>Goal: {goal}</Title>
+        <Title>{progress * 100} %</Title>
+        <Body>
+          <ProgressBar
+            progress={progress}
+            height={50}
+            borderRadius={0}
+            width={300}
+          />
+          <MainButton onPress={this.onPress} text="+" />
+          <Title>{this.state.count}</Title>
+        </Body>
       </View>
     );
   }

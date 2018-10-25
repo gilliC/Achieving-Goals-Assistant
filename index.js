@@ -13,7 +13,6 @@ export default class App extends Component {
     return (
       <Provider store={store()}>
         <View>
-          <Text>WELCOME TO ACHIVING GOALS</Text>
           <Home />
         </View>
       </Provider>
