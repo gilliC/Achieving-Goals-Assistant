@@ -1,0 +1,3 @@
+rootProject.name = 'goalsTracking'
+
+include ':app'
