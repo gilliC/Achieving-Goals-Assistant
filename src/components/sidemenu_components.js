@@ -9,6 +9,7 @@ const LinkeText = styled.Text`
   font-size: 20px;
   text-align: center;
   color: #70a9a1;
+  font-weight: bold;
 `;
 
 export const Link = props => {
