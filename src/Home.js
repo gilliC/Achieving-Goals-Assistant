@@ -1,26 +1,36 @@
 import React, {Component} from 'react';
 import {Text, View, Button} from 'react-native';
 import {connect} from 'react-redux';
-import {counterInitialize, counterIncrease} from './reducers/counter_actions';
+import {
+  counterInitialize,
+  counterIncrease,
+  counterDecrease,
+} from './reducers/counter_actions';
 import * as Progress from 'react-native-progress';
 import styled from 'styled-components/native';
 import {
   Title,
+  TitleSurrounded,
   Body,
   MainButton,
   ProgressBar,
+  AlignRow,
+  AppView,
 } from './components/general_components';
 
+const progressBarWidth = 300;
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = {count: this.props.count};
-    this.onPress = this.onPress.bind(this);
+    this.state = {count: this.props.count, goals: this.props.goals};
+    this.onPressIncrease = this.onPressIncrease.bind(this);
+    this.onPressDecrease = this.onPressDecrease.bind(this);
     this.props.counterInitialize();
   }
   componentWillReceiveProps(nextProps) {
     let count = nextProps.count;
     this.setState({count});
+    console.log(count);
   }
   shouldComponentUpdate(nextProps, nextState) {
     if (nextProps !== this.props) {
@@ -34,28 +44,47 @@ class Home extends Component {
     return '' + progress + ' %';
   }
 
-  onPress() {
+  onPressIncrease() {
     this.props.counterIncrease();
+  }
+  onPressDecrease() {
+    this.props.counterDecrease();
   }
 
   render() {
     let goal = 100;
     let progress = this.state.count / goal;
     return (
-      <View>
-        <Title>Goal: {goal}</Title>
-        <Title>{progress * 100} %</Title>
+      <AppView>
         <Body>
+          <Title>{this.state.goals}</Title>
+          <Title large>{parseInt(progress * 100)} %</Title>
           <ProgressBar
             progress={progress}
             height={50}
             borderRadius={0}
-            width={300}
-          />
-          <MainButton onPress={this.onPress} text="+" />
-          <Title>{this.state.count}</Title>
+            width={progressBarWidth}
+            borderWidth={2}>
+            <Title absolute>
+              {this.state.count}/ {goal} pt
+            </Title>
+          </ProgressBar>
+          <AlignRow>
+            <MainButton
+              onPress={this.onPressIncrease}
+              text="+"
+              width={progressBarWidth}
+              numItems={2}
+            />
+            <MainButton
+              text="-"
+              onPress={this.onPressDecrease}
+              width={progressBarWidth}
+              numItems={2}
+            />
+          </AlignRow>
         </Body>
-      </View>
+      </AppView>
     );
   }
 }
@@ -63,10 +92,11 @@ class Home extends Component {
 const mapStateToProps = state => {
   return {
     count: state.count.count,
+    goals: state.goals.goals,
   };
 };
 
 export default connect(
   mapStateToProps,
-  {counterInitialize, counterIncrease},
+  {counterInitialize, counterIncrease, counterDecrease},
 )(Home);

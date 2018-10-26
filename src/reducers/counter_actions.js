@@ -1,14 +1,12 @@
 import React from 'react';
 import {AsyncStorage} from 'react-native';
 import {
-  INCREASE_COUNTER,
-  FETCH_DATA_BEGIN,
-  FETCH_DATA_FAILURE,
-  FETCH_DATA_SUCCESS,
-  SET_DATA_BEGIN,
-  SET_DATA_SUCCESS,
-  SET_DATA_FAILURE,
-  increaingfunc,
+  FETCH_COUNT_BEGIN,
+  FETCH_COUNT_FAILURE,
+  FETCH_COUNT_SUCCESS,
+  SET_COUNT_BEGIN,
+  SET_COUNT_SUCCESS,
+  SET_COUNT_FAILURE,
 } from './constants';
 const countKey = 'count';
 
@@ -59,25 +57,49 @@ export function counterIncrease() {
     })();
   };
 }
+export function counterDecrease() {
+  return dispatch => {
+    dispatch(fetchDataBegin);
+    (async () => {
+      try {
+        const oldValue = await AsyncStorage.getItem(countKey);
+        if (oldValue !== null && oldValue !== '0') {
+          (async () => {
+            try {
+              let newValue = ((oldValue - 1) | 0).toString();
+              if (newValue < 0) newValue = '0';
+              await AsyncStorage.setItem(countKey, newValue);
+              dispatch(setDataSuccess(newValue));
+            } catch (error) {
+              dispatch(setDataFailure(error));
+            }
+          })();
+        } else dispatch(fetchDataFailure({name: 'equals null or zero'}));
+      } catch (error) {
+        dispatch(fetchDataFailure(error));
+      }
+    })();
+  };
+}
 export const fetchDataBegin = () => ({
-  type: FETCH_DATA_BEGIN,
+  type: FETCH_COUNT_BEGIN,
 });
 export const fetchDataSuccess = count => ({
-  type: FETCH_DATA_SUCCESS,
+  type: FETCH_COUNT_SUCCESS,
   payload: {count},
 });
 export const fetchDataFailure = error => ({
-  type: FETCH_DATA_FAILURE,
+  type: FETCH_COUNT_FAILURE,
   payload: {error: error},
 });
 export const setDataBegin = () => ({
-  type: SET_DATA_BEGIN,
+  type: SET_COUNT_BEGIN,
 });
 export const setDataSuccess = count => ({
-  type: SET_DATA_SUCCESS,
+  type: SET_COUNT_SUCCESS,
   payload: {count},
 });
 export const setDataFailure = error => ({
-  type: SET_DATA_FAILURE,
+  type: SET_COUNT_FAILURE,
   payload: {error: error},
 });
