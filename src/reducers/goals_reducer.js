@@ -8,7 +8,7 @@ import {
 } from './constants';
 import {AsyncStorage} from 'react-native';
 const initialState = {
-  goals: ['No Goals Were Set'],
+  goals: ['No Goals Were Set', 'why dont you have goals???'],
   loading: false,
   error: null,
 };

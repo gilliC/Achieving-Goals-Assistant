@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Provider} from 'react-redux';
-import {DrawerNavigator} from 'react-navigation';
+import {createDrawerNavigator} from 'react-navigation';
 import {Dimensions} from 'react-native';
 
 import store from './configureStore';
-import Home from './src/Home';
+import AppNavigator from './src/AppNavigator';
 import SideMenu from './src/SideMenu';
 
-const Navigator = DrawerNavigator(
+const Navigator = createDrawerNavigator(
   {
     Item1: {
-      screen: Home,
+      screen: AppNavigator,
     },
   },
   {

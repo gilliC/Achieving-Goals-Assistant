@@ -55,7 +55,7 @@ class Home extends Component {
     let goal = 100;
     let progress = this.state.count / goal;
     return (
-      <AppView>
+      <AppView center>
         <Body>
           <Title>{this.state.goals}</Title>
           <Title large>{parseInt(progress * 100)} %</Title>

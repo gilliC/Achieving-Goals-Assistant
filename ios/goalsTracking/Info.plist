@@ -53,6 +53,25 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Mali-Bold.ttf</string>
+		<string>Mali-BoldItalic.ttf</string>
+		<string>Mali-ExtraLight.ttf</string>
+		<string>Mali-ExtraLightItalic.ttf</string>
+		<string>Mali-Italic.ttf</string>
+		<string>Mali-Light.ttf</string>
+		<string>Mali-LightItalic.ttf</string>
+		<string>Mali-Medium.ttf</string>
+		<string>Mali-MediumItalic.ttf</string>
+		<string>Mali-Regular.ttf</string>
+		<string>Mali-SemiBold.ttf</string>
+		<string>Mali-SemiBoldItalic.ttf</string>
+		<string>PermanentMarker-Regular.ttf</string>
+		<string>Rajdhani-Bold.ttf</string>
+		<string>Rajdhani-Light.ttf</string>
+		<string>Rajdhani-Medium.ttf</string>
+		<string>Rajdhani-Regular.ttf</string>
+		<string>Rajdhani-SemiBold.ttf</string>
+		<string>ShadowsIntoLight.ttf</string>
 		<string>AntDesign.ttf</string>
 		<string>Entypo.ttf</string>
 		<string>EvilIcons.ttf</string>

@@ -4,7 +4,7 @@ import {NavigationActions} from 'react-navigation';
 import {ScrollView, Text, View} from 'react-native';
 import {StackNavigator} from 'react-navigation';
 
-import {Link} from './components/sidemenu_components';
+import {Link, SideMenu_View} from './components/sidemenu_components';
 
 class SideMenu extends Component {
   navigateToScreen = route => () => {
@@ -15,17 +15,29 @@ class SideMenu extends Component {
   };
 
   render() {
+    const {navigate} = this.props.navigation;
     return (
       <View>
         <ScrollView>
-          <View>
-            <Link> Tracker</Link>
-            <Link>Profile</Link>
-          </View>
+          <SideMenu_View>
+            <Link
+              name="graph"
+              type="octicon"
+              onPress={() => {
+                navigate('Home');
+              }}>
+              Tracker
+            </Link>
+            <Link
+              name="user"
+              type="font-awesome"
+              onPress={() => {
+                navigate('Profile');
+              }}>
+              Profile
+            </Link>
+          </SideMenu_View>
         </ScrollView>
-        <View>
-          <Text>This is my fixed footer</Text>
-        </View>
       </View>
     );
   }

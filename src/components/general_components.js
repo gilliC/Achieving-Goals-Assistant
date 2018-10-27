@@ -7,7 +7,7 @@ import * as Progress from 'react-native-progress';
 export const AppView = styled.View`
   flex: 1;
   flex-direction: column;
-  justify-content: center;
+  justify-content: ${props => (props.center ? 'center' : 'flex-start')};
   border: 10px solid #70a9a1;
 `;
 
