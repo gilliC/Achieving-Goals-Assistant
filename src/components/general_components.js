@@ -23,6 +23,8 @@ export const AlignRow = styled.View`
 /////// TITLES ///////
 export const Title = styled.Text`
   color: ${props => props.color || '#70a9a1'};
+  font-family: ${props =>
+    props.number ? 'Rajdhani-Regular' : 'PermanentMarker-Regular'};
   font-size: ${props => (props.large ? '100px' : '20px')};
   text-align: center;
   margin: ${props => props.margin || '5%'};
@@ -56,7 +58,7 @@ const StyledButton_Text = styled.Text`
 
 export const MainButton = props => {
   let numItems = props.numItems || 1;
-  let width = props.width / numItems - 10 + 'px' || '100%';
+  let width = props.width ? props.width / numItems - 10 + 'px' : '100%';
   return (
     <StyledButton onPress={props.onPress} width={width}>
       <StyledButton_Text>{props.text}</StyledButton_Text>
