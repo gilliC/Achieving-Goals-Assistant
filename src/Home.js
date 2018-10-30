@@ -30,11 +30,9 @@ class Home extends Component {
   componentWillReceiveProps(nextProps) {
     let count = nextProps.count;
     this.setState({count});
-    console.log(count);
   }
   shouldComponentUpdate(nextProps, nextState) {
     if (nextProps !== this.props) {
-      console.table({now: this.props, next: nextProps});
       return true;
     }
     return false;
@@ -52,21 +50,25 @@ class Home extends Component {
   }
 
   render() {
-    let goal = 100;
-    let progress = this.state.count / goal;
+    let pointsGoal = 100;
+    const {goals} = this.props;
+    let progress = this.state.count / pointsGoal;
+    let goalActive = Math.floor(Math.random() * goals.length);
     return (
-      <AppView>
+      <AppView center>
         <Body>
-          <Title>{this.state.goals}</Title>
-          <Title large>{parseInt(progress * 100)} %</Title>
+          <Title>{this.state.goals[goalActive]}</Title>
+          <Title number large>
+            {parseInt(progress * 100)} %
+          </Title>
           <ProgressBar
             progress={progress}
             height={50}
             borderRadius={0}
             width={progressBarWidth}
             borderWidth={2}>
-            <Title absolute>
-              {this.state.count}/ {goal} pt
+            <Title number absolute>
+              {this.state.count}/ {pointsGoal} pt
             </Title>
           </ProgressBar>
           <AlignRow>
