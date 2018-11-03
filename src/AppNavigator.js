@@ -3,6 +3,7 @@ import {Platform, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 
 import {createStackNavigator} from 'react-navigation';
 import Home from './Home';
+import Instructions from './Instructions';
 import Profile from './Profile/Profile';
 const AppNavigator = createStackNavigator(
   {
@@ -12,6 +13,10 @@ const AppNavigator = createStackNavigator(
     },
     Profile: {
       screen: Profile,
+      navigationOptions: ({navigation}) => ({}),
+    },
+    Instructions: {
+      screen: Instructions,
       navigationOptions: ({navigation}) => ({}),
     },
   },

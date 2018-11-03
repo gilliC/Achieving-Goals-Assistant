@@ -6,6 +6,7 @@ import {
   counterIncrease,
   counterDecrease,
 } from './reducers/counter_actions';
+import {goalsInitialize} from './reducers/goals_actions';
 import * as Progress from 'react-native-progress';
 import styled from 'styled-components/native';
 import {
@@ -19,6 +20,7 @@ import {
 } from './components/general_components';
 
 const progressBarWidth = 300;
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -26,10 +28,17 @@ class Home extends Component {
     this.onPressIncrease = this.onPressIncrease.bind(this);
     this.onPressDecrease = this.onPressDecrease.bind(this);
     this.props.counterInitialize();
+    this.props.goalsInitialize();
   }
   componentWillReceiveProps(nextProps) {
-    let count = nextProps.count;
-    this.setState({count});
+    if (this.state.count !== nextProps.count) {
+      let count = nextProps.count;
+      this.setState({count});
+    }
+    if (this.state.goals !== nextProps.goals) {
+      let goals = nextProps.goals;
+      this.setState({goals});
+    }
   }
   shouldComponentUpdate(nextProps, nextState) {
     if (nextProps !== this.props) {
@@ -58,7 +67,7 @@ class Home extends Component {
       <AppView center>
         <Body>
           <Title>{this.state.goals[goalActive]}</Title>
-          <Title number large>
+          <Title font="Rajdhani-Regular" size="100px">
             {parseInt(progress * 100)} %
           </Title>
           <ProgressBar
@@ -67,7 +76,7 @@ class Home extends Component {
             borderRadius={0}
             width={progressBarWidth}
             borderWidth={2}>
-            <Title number absolute>
+            <Title font="Rajdhani-Regular" absolute>
               {this.state.count}/ {pointsGoal} pt
             </Title>
           </ProgressBar>
@@ -100,5 +109,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {counterInitialize, counterIncrease, counterDecrease},
+  {counterInitialize, counterIncrease, counterDecrease, goalsInitialize},
 )(Home);

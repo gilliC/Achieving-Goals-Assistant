@@ -1,29 +1,56 @@
 import React from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
+import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
 import {Icon} from 'react-native-elements';
 
-export const SideMenu_View = styled.View`
-  flex: 1;
-  padding-top: 10%;
+import {Title} from './general_components';
+
+export const Fotter = styled.View`
+  padding: 15px;
+  position: absolute;
+  bottom: 0;
 `;
+
+////////// HEADER ///////////
+const Header_View = styled.View`
+  top: 0;
+  background-color: #70a9a1;
+  height: 15%;
+`;
+const Header_Icon = styled(Icon)`
+  margin-left: 3px;
+  margin-right: 10px;
+  width: 25%;
+`;
+const Header_Title = styled(Title)`
+  color: white;
+  font-family: ShadowsIntoLight;
+  font-size: 35px;
+`;
+
+export const Header = props => {
+  return (
+    <Header_View>
+      <Header_Title>Goals Tracker</Header_Title>
+    </Header_View>
+  );
+};
+
+////////// LINK ///////////
 const LinkView = styled.View`
   padding: 15px;
   flex-direction: row;
 `;
 
-const LinkButton = styled.TouchableOpacity``;
 const LinkText = styled.Text`
   font-size: 20px;
+  font-family: Rajdhani-Bold;
   color: #70a9a1;
-  font-weight: bold;
   width: 75%;
   margin-left: 10px;
   text-align: center;
 `;
-const LinkIcon = styled(Icon)`
-  margin-left: 3px;
-  margin-right: 10px;
+export const LinkIcon = styled(Icon)`
   width: 25%;
 `;
 
@@ -33,17 +60,23 @@ export const Link = props => {
     throw 'Link can not show react elements or objects';
   return (
     <View>
-      <LinkButton onPress={props.onPress}>
+      <TouchableOpacity onPress={props.onPress}>
         <LinkView>
           <LinkIcon
             name={props.name}
             type={props.type}
             color="#70a9a1"
-            size={20}
+            size={props.large ? 30 : 20}
           />
           <LinkText>{props.children}</LinkText>
         </LinkView>
-      </LinkButton>
+      </TouchableOpacity>
     </View>
   );
 };
+////////// Quote ///////////
+
+export const Quote = styled(Title)`
+  font-size: 25px;
+  font-family: ShadowsIntoLight;
+`;

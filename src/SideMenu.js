@@ -4,7 +4,8 @@ import {NavigationActions} from 'react-navigation';
 import {ScrollView, Text, View} from 'react-native';
 import {StackNavigator} from 'react-navigation';
 
-import {Link, SideMenu_View} from './components/sidemenu_components';
+import {Link, Header, Fotter, Quote} from './components/sidemenu_components';
+import {FlexView} from './components/general_components';
 
 class SideMenu extends Component {
   navigateToScreen = route => () => {
@@ -15,11 +16,12 @@ class SideMenu extends Component {
   };
 
   render() {
-    const {navigate} = this.props.navigation;
+    const navigate = this.props.navigation.navigate;
     return (
-      <View>
+      <FlexView>
+        <Header />
         <ScrollView>
-          <SideMenu_View>
+          <View>
             <Link
               name="graph"
               type="octicon"
@@ -36,9 +38,20 @@ class SideMenu extends Component {
               }}>
               Profile
             </Link>
-          </SideMenu_View>
+            <Link
+              name="info"
+              type="font-awesome"
+              onPress={() => {
+                navigate('Instructions');
+              }}>
+              Instructions
+            </Link>
+          </View>
         </ScrollView>
-      </View>
+        <Fotter>
+          <Quote>"Don't talk about your dreams, SHOW them"</Quote>
+        </Fotter>
+      </FlexView>
     );
   }
 }

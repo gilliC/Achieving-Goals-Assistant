@@ -15,7 +15,7 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case FETCH_COUNT_BEGIN:
-      console.log({name: 'begin', value: state});
+      console.log({name: 'FETCH_COUNT_BEGIN', oldState: state});
       return {
         ...state,
         loading: true,
@@ -23,7 +23,11 @@ export default function(state = initialState, action) {
       };
 
     case FETCH_COUNT_SUCCESS:
-      console.log({name: 'success', payload: action.payload, value: state});
+      console.log({
+        name: 'FETCH_COUNT_SUCCESS',
+        payload: action.payload,
+        oldState: state,
+      });
       return {
         ...state,
         loading: false,
@@ -31,14 +35,18 @@ export default function(state = initialState, action) {
       };
 
     case FETCH_COUNT_FAILURE:
-      console.log({name: 'failure', answer: action, value: state});
+      console.log({
+        name: 'FETCH_COUNT_FAILURE',
+        answer: action,
+        oldState: state,
+      });
       return {
         ...state,
         loading: false,
         error: action.payload.error,
       };
     case SET_COUNT_BEGIN:
-      console.log({name: 'begin', value: state});
+      console.log({name: 'SET_COUNT_BEGIN', oldState: state});
       return {
         ...state,
         loading: true,
@@ -46,7 +54,11 @@ export default function(state = initialState, action) {
       };
 
     case SET_COUNT_SUCCESS:
-      console.log({name: 'successSET', payload: action.payload, value: state});
+      console.log({
+        name: 'SET_COUNT_SUCCESS',
+        payload: action.payload,
+        oldState: state,
+      });
       return {
         ...state,
         loading: false,
@@ -54,7 +66,7 @@ export default function(state = initialState, action) {
       };
 
     case SET_COUNT_FAILURE:
-      console.log({name: 'failure', answer: action, value: state});
+      console.log({name: 'SET_COUNT_FAILURE', answer: action, oldState: state});
       return {
         ...state,
         loading: false,

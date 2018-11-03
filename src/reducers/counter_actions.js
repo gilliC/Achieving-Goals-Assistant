@@ -36,7 +36,7 @@ export function counterInitialize() {
 }
 export function counterIncrease() {
   return dispatch => {
-    dispatch(fetchDataBegin);
+    dispatch(fetchDataBegin());
     (async () => {
       try {
         const oldValue = await AsyncStorage.getItem(countKey);
@@ -59,7 +59,7 @@ export function counterIncrease() {
 }
 export function counterDecrease() {
   return dispatch => {
-    dispatch(fetchDataBegin);
+    dispatch(fetchDataBegin());
     (async () => {
       try {
         const oldValue = await AsyncStorage.getItem(countKey);
