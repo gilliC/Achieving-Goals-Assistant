@@ -54,7 +54,7 @@ export function addGoal(goal) {
             }
             newList = JSON.stringify(newList);
             await AsyncStorage.setItem(goalsKey, newList);
-            dispatch(setGoalsSuccess(newList));
+            dispatch(setGoalsSuccess(newList, false));
           } catch (error) {
             dispatch(setGoalsFailure(error));
           }
