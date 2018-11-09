@@ -21,13 +21,15 @@
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.0.2",
-    "supports-color": "^5.5.0"
+    "supports-color": "^5.5.0",
+    "merge": ">=1.2.1"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",
     "babel-preset-react-native": "5.0.2",
     "jest": "23.6.0",
-    "react-test-renderer": "16.4.1"
+    "react-test-renderer": "16.4.1",
+    "merge": ">=1.2.1"
   },
   "jest": {
     "preset": "react-native"

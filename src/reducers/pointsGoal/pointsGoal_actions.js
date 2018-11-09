@@ -10,7 +10,7 @@ import {
 } from '../constants';
 
 const pointsGoalKey = 'points goal';
-const initialGoal = '1p0';
+const initialGoal = '100';
 
 export function pointsGoalInitialize() {
   return dispatch => {

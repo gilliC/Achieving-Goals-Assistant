@@ -112,7 +112,7 @@ class Home extends Component {
           />
           <MainButton
             text="-"
-            onPress={this.changeVisible}
+            onPress={this.onPressDecrease}
             width={progressBarWidth}
             numItems={2}
           />
