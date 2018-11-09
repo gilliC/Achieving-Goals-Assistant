@@ -1,6 +1,6 @@
 {
   "name": "goalsTracking",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -8,8 +8,10 @@
   },
   "dependencies": {
     "formik": "^1.3.1",
+    "prop-types": "^15.6.2",
     "react": "16.4.1",
     "react-native": "0.56.0",
+    "react-native-confetti": "^0.1.0",
     "react-native-elements": "^0.19.1",
     "react-native-modal": "^6.5.0",
     "react-native-progress": "^3.5.0",
@@ -19,8 +21,7 @@
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.0.2",
-    "supports-color": "^5.5.0",
-    "victory": "^30.5.1"
+    "supports-color": "^5.5.0"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",
@@ -32,6 +33,8 @@
     "preset": "react-native"
   },
   "rnpm": {
-    "assets": ["./assets/fonts/fonts/"]
+    "assets": [
+      "./assets/fonts/fonts/"
+    ]
   }
 }

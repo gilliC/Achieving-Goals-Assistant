@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
-import {Text, View, TextInput, Button} from 'react-native';
-import Modal from 'react-native-modal';
-import {Formik, Form, Field, ErrorMessage} from 'formik';
+import PropTypes from 'prop-types';
+import {Formik, Field, ErrorMessage} from 'formik';
+
 import GoalItem from './GoalItem';
-import {Title, MainButton, ErrorMSG} from '../components/general_components';
 import {
-  Profile_Title,
-  AddGoal_View,
-  AddGoal_Input,
-} from '../components/profile_components';
+  Title,
+  MainButton,
+  ErrorMSG,
+  MainModal,
+} from '../components/general_components';
+import {AddGoal_View, AddGoal_Input} from '../components/profile_components';
 
 export default class AddGoal extends Component {
   constructor(props) {
@@ -16,16 +17,17 @@ export default class AddGoal extends Component {
     this.state = {visible: false};
   }
   componentDidUpdate(props) {
-    if (this.props.visible !== this.state.visible)
-      this.setState({visible: this.props.visible});
+    const {visible} = this.props;
+    if (visible !== this.state.visible) this.setState({visible});
   }
   render() {
     return (
-      <Modal
-        isVisible={this.state.visible}
-        duration={500}
-        onBackdropPress={this.props.onClose}
-        onBackButtonPress={this.props.onClose}>
+      <MainModal
+        modalConfig={{
+          isVisible: this.state.visible,
+          duration: 500,
+          onBackButtonPress: this.props.onClose,
+        }}>
         <Formik
           initialValues={{goal: ''}}
           validate={values => {
@@ -41,7 +43,7 @@ export default class AddGoal extends Component {
             error => {
               actions.setSubmitting(false);
               actions.setErrors(error);
-              actions.setStatus({msg: 'Set some arbitrary status or data'});
+              actions.setStatus({msg: 'Error'});
             };
           }}>
           {formikProps => (
@@ -64,7 +66,17 @@ export default class AddGoal extends Component {
             </AddGoal_View>
           )}
         </Formik>
-      </Modal>
+      </MainModal>
     );
   }
 }
+
+AddGoal.defaultProps = {
+  visible: false,
+};
+
+AddGoal.propTypes = {
+  visible: PropTypes.bool.isRequired,
+  onClose: PropTypes.func,
+  addGoal: PropTypes.func,
+};

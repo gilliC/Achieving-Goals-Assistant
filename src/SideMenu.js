@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {NavigationActions} from 'react-navigation';
-import {ScrollView, Text, View} from 'react-native';
+import {ScrollView} from 'react-native';
 import {StackNavigator} from 'react-navigation';
 
 import {Link, Header, Fotter, Quote} from './components/sidemenu_components';
@@ -19,34 +19,32 @@ class SideMenu extends Component {
     const navigate = this.props.navigation.navigate;
     return (
       <FlexView>
-        <Header />
+        <Header text="Goals Tracker" />
         <ScrollView>
-          <View>
-            <Link
-              name="graph"
-              type="octicon"
-              onPress={() => {
-                navigate('Home');
-              }}>
-              Tracker
-            </Link>
-            <Link
-              name="user"
-              type="font-awesome"
-              onPress={() => {
-                navigate('Profile');
-              }}>
-              Profile
-            </Link>
-            <Link
-              name="info"
-              type="font-awesome"
-              onPress={() => {
-                navigate('Instructions');
-              }}>
-              Instructions
-            </Link>
-          </View>
+          <Link
+            name="graph"
+            type="octicon"
+            onPress={() => {
+              navigate('Home');
+            }}>
+            Tracker
+          </Link>
+          <Link
+            name="user"
+            type="font-awesome"
+            onPress={() => {
+              navigate('Profile');
+            }}>
+            Profile
+          </Link>
+          <Link
+            name="info"
+            type="font-awesome"
+            onPress={() => {
+              navigate('Instructions');
+            }}>
+            Instructions
+          </Link>
         </ScrollView>
         <Fotter>
           <Quote>"Don't talk about your dreams, SHOW them"</Quote>

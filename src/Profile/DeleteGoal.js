@@ -1,15 +1,13 @@
 import React, {Component} from 'react';
-import {Text, View, TextInput, Button} from 'react-native';
-import Modal from 'react-native-modal';
-import {Formik, Form, Field, ErrorMessage} from 'formik';
+import PropTypes from 'prop-types';
+
 import GoalItem from './GoalItem';
-import {Title, MainButton, AlignRow} from '../components/general_components';
-import {Quote} from '../components/sidemenu_components';
 import {
-  Profile_Title,
-  AddGoal_View,
-  AddGoal_Input,
-} from '../components/profile_components';
+  Title,
+  MainButton,
+  AlignRow,
+  MainModal,
+} from '../components/general_components';
 
 export default class DeleteGoal extends Component {
   constructor(props) {
@@ -18,8 +16,8 @@ export default class DeleteGoal extends Component {
     this.onDelete = this.onDelete.bind(this);
   }
   componentDidUpdate(props) {
-    if (this.props.visible !== this.state.visible)
-      this.setState({visible: this.props.visible});
+    const {visible} = this.props;
+    if (visible !== this.state.visible) this.setState({visible});
   }
   onDelete() {
     this.props.onDelete();
@@ -27,31 +25,50 @@ export default class DeleteGoal extends Component {
   }
   render() {
     return (
-      <Modal
-        isVisible={this.state.visible}
-        duration={500}
-        onBackdropPress={this.props.onClose}
-        onBackButtonPress={this.props.onClose}>
-        <AddGoal_View>
-          <Quote>{this.props.goal}</Quote>
-          <AlignRow>
-            <MainButton
-              inverted
-              text="Delete"
-              width={250}
-              numItems={2}
-              onPress={this.onDelete}
-            />
-            <MainButton
-              inverted
-              text="Cancel"
-              width={250}
-              numItems={2}
-              onPress={this.props.onClose}
-            />
-          </AlignRow>
-        </AddGoal_View>
-      </Modal>
+      <MainModal
+        modalConfig={{
+          isVisible: this.state.visible,
+          duration: 500,
+          onBackButtonPress: this.props.onClose,
+        }}
+        containerConfig={{
+          height: '50%',
+          borderWidth: '3px',
+        }}>
+        <Title size="20px" font="ShadowsIntoLight">
+          Do you want to delete:
+        </Title>
+        <Title size="40px" font="ShadowsIntoLight">
+          {this.props.goal}
+        </Title>
+        <AlignRow>
+          <MainButton
+            inverted
+            text="Delete"
+            width={250}
+            numItems={2}
+            onPress={this.onDelete}
+          />
+          <MainButton
+            inverted
+            text="Cancel"
+            width={250}
+            numItems={2}
+            onPress={this.props.onClose}
+          />
+        </AlignRow>
+      </MainModal>
     );
   }
 }
+
+DeleteGoal.defaultProps = {
+  visible: false,
+};
+
+DeleteGoal.propTypes = {
+  visible: PropTypes.bool.isRequired,
+  onClose: PropTypes.func,
+  onDelete: PropTypes.func,
+  goal: PropTypes.string,
+};

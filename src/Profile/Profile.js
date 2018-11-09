@@ -1,16 +1,12 @@
 import React, {Component} from 'react';
-import {Text, View, ScrollView, TouchableHighlight} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 
-import {addGoal, goalsInitialize, deleteGoal} from '../reducers/goals_actions';
+import {addGoal, deleteGoal} from '../reducers/goals/goals_actions';
 
-import {Profile_Title, NoGoals_Title} from '../components/profile_components';
-import {
-  Title,
-  Body,
-  AppView,
-  MainButton,
-} from '../components/general_components';
+import {NoGoals_Title} from '../components/profile_components';
+import {Title, AppView, MainButton} from '../components/general_components';
 import GoalItem from './GoalItem';
 import AddGoal from './AddGoal';
 import DeleteGoal from './DeleteGoal';
@@ -41,11 +37,10 @@ class Profile extends Component {
     this.props.addGoal(goal);
   }
   deleteGoal() {
-    console.log({name: 'DELETE', value: this.state.goalToDelete});
     this.props.deleteGoal(this.state.goalToDelete);
   }
   render() {
-    let goalsArray = this.props.goals;
+    let goalsArray = this.props.goalsList;
     let goalsList;
     if (!this.props.isEmpty)
       goalsList = goalsArray.map((goal, index) => {
@@ -89,21 +84,35 @@ class Profile extends Component {
           onPress={this.changeVisibleAdd}
         />
         <ScrollView>
-          <Profile_Title>Your Goals:</Profile_Title>
+          <Title font="PermanentMarker-Regular" size="30px">
+            Your Goals:
+          </Title>
           {goalsList}
         </ScrollView>
       </AppView>
     );
   }
 }
+
+Profile.propTypes = {
+  goalsList: PropTypes.array,
+  isEmpty: PropTypes.bool,
+  addGoal: PropTypes.func,
+  deleteGoal: PropTypes.func,
+};
+
+Profile.defaultProps = {
+  isEmpty: true,
+};
+
 const mapStateToProps = state => {
   return {
-    goals: state.goals.goals,
-    isEmpty: state.goals.isEmpty,
+    goalsList: state.goalsList.goalsList,
+    isEmpty: state.goalsList.isEmpty,
   };
 };
 
 export default connect(
   mapStateToProps,
-  {addGoal, goalsInitialize, deleteGoal},
+  {addGoal, deleteGoal},
 )(Profile);

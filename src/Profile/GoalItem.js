@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {Text, View, TouchableWithoutFeedback} from 'react-native';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {Title} from '../components/general_components';
+import {TouchableWithoutFeedback} from 'react-native';
+
 import {GoalItem_Text} from '../components/profile_components';
 
 export default class GoalItem extends Component {
@@ -14,12 +15,24 @@ export default class GoalItem extends Component {
     this.props.onLongPress(this.props.index);
   }
   render() {
+    const {index, goal} = this.props;
     return (
-      <TouchableWithoutFeedback onPress={this.onLongPress}>
+      <TouchableWithoutFeedback onLongPress={this.onLongPress}>
         <GoalItem_Text>
-          {this.props.index}. {this.props.goal}
+          {index}. {goal}
         </GoalItem_Text>
       </TouchableWithoutFeedback>
     );
   }
 }
+
+GoalItem.defaultProps = {
+  index: 0,
+  goal: "There's an error",
+};
+
+GoalItem.propTypes = {
+  index: PropTypes.number,
+  goal: PropTypes.string,
+  onLongPress: PropTypes.func,
+};

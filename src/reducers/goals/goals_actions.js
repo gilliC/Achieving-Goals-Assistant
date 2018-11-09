@@ -10,7 +10,7 @@ import {
   DELETE_GOAL_BEGIN,
   DELETE_GOAL_SUCCESS,
   DELETE_GOAL_FAILURE,
-} from './constants';
+} from '../constants';
 const goalsKey = 'Goals List';
 
 export function goalsInitialize() {
@@ -44,11 +44,6 @@ export function addGoal(goal) {
       try {
         const oldList = await AsyncStorage.getItem(goalsKey);
         (async () => {
-          console.table({
-            name: 'add goal old value',
-            value: oldList,
-            add: goal,
-          });
           try {
             let newList;
             if (!oldList) {
@@ -101,9 +96,9 @@ export function deleteGoal(index) {
 export const fetchGoalsBegin = () => ({
   type: FETCH_GOALS_BEGIN,
 });
-export const fetchGoalsSuccess = (goals, isEmpty) => ({
+export const fetchGoalsSuccess = (goalsList, isEmpty) => ({
   type: FETCH_GOALS_SUCCESS,
-  payload: {goals: goals, isEmpty: isEmpty},
+  payload: {goalsList: goalsList, isEmpty: isEmpty},
 });
 export const fetchGoalsFailure = error => ({
   type: FETCH_GOALS_FAILURE,
@@ -112,9 +107,9 @@ export const fetchGoalsFailure = error => ({
 export const setGoalsBegin = () => ({
   type: SET_GOALS_BEGIN,
 });
-export const setGoalsSuccess = (goals, isEmpty) => ({
+export const setGoalsSuccess = (goalsList, isEmpty) => ({
   type: SET_GOALS_SUCCESS,
-  payload: {goals: goals, isEmpty: isEmpty},
+  payload: {goalsList: goalsList, isEmpty: isEmpty},
 });
 export const setGoalsFailure = error => ({
   type: SET_GOALS_FAILURE,
@@ -126,9 +121,9 @@ export const deleteGoalBegin = () => {
     type: DELETE_GOAL_BEGIN,
   };
 };
-export const deleteGoalSuccess = (goals, isEmpty) => ({
+export const deleteGoalSuccess = (goalsList, isEmpty) => ({
   type: DELETE_GOAL_SUCCESS,
-  payload: {goals: goals, isEmpty: isEmpty},
+  payload: {goalsList: goalsList, isEmpty: isEmpty},
 });
 export const deleteGoalFailure = error => ({
   type: DELETE_GOAL_FAILURE,

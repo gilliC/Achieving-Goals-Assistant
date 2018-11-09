@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
 import * as Progress from 'react-native-progress';
+import Modal from 'react-native-modal';
 import {Field, ErrorMessage} from 'formik';
 
 /////// APP LAYOUT ///////
@@ -12,14 +13,12 @@ export const AppView = styled.View`
   border: 10px solid #70a9a1;
 `;
 
-export const Body = styled.View`
-  top: -10%;
-`;
 export const FlexView = styled.View`
   flex: 1;
 `;
 export const AlignRow = styled.View`
   flex-direction: row;
+  align-self: center;
 `;
 export const ViewPadding = styled.View`
   margin-left: ${props => props.marginleft || '0px'};
@@ -123,5 +122,27 @@ export const ErrorMSG = props => {
     <ErrorMessage name={props.name}>
       {msg => <ErrorMSG_Text>{msg}</ErrorMSG_Text>}
     </ErrorMessage>
+  );
+};
+/////// MODAL ///////
+
+const Modal_View = styled.View`
+  width: ${props => props.width || '90%'};
+  height: ${props => props.height || '35%'};
+  border-width: ${props => props.borderWidth || '1px'};
+  min-height: 160px;
+  background-color: white;
+  border-color: #70a9a1;
+  flex-direction: column;
+  justify-content: center;
+  elevation: 5;
+  align-self: center;
+`;
+
+export const MainModal = props => {
+  return (
+    <Modal {...props.modalConfig}>
+      <Modal_View {...props.containerConfig}>{props.children}</Modal_View>
+    </Modal>
   );
 };

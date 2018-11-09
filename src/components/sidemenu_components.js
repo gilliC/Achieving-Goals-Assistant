@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, ScrollView, TouchableOpacity} from 'react-native';
+import {Text, View, TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
 import {Icon} from 'react-native-elements';
 
@@ -31,7 +31,7 @@ const Header_Title = styled(Title)`
 export const Header = props => {
   return (
     <Header_View>
-      <Header_Title>Goals Tracker</Header_Title>
+      <Header_Title>{props.text}</Header_Title>
     </Header_View>
   );
 };

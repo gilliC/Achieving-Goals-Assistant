@@ -8,15 +8,15 @@ import {
   DELETE_GOAL_BEGIN,
   DELETE_GOAL_SUCCESS,
   DELETE_GOAL_FAILURE,
-} from './constants';
+} from '../constants';
 import {AsyncStorage} from 'react-native';
 const initialState = {
-  goals: [],
+  goalsList: [],
   loading: false,
   error: null,
   isEmpty: true,
 };
-let goals;
+let goalsList;
 export default function(state = initialState, action) {
   switch (action.type) {
     case DELETE_GOAL_BEGIN:
@@ -44,7 +44,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        goals: action.payload.goals,
+        goalsList: action.payload.goalsList,
         isEmpty: action.payload.isEmpty,
       };
 
@@ -73,11 +73,11 @@ export default function(state = initialState, action) {
         payload: action.payload,
         oldState: state,
       });
-      goals = JSON.parse(action.payload.goals);
+      goalsList = JSON.parse(action.payload.goalsList);
       return {
         ...state,
         loading: false,
-        goals: goals,
+        goalsList: goalsList,
         isEmpty: action.payload.isEmpty,
       };
 
@@ -96,11 +96,11 @@ export default function(state = initialState, action) {
         oldState: state,
       });
       //recived stringfy goals list without the deleted one
-      goals = JSON.parse(action.payload.goals);
+      goalsList = JSON.parse(action.payload.goalsList);
       return {
         ...state,
         loading: false,
-        goals: goals,
+        goalsList: goalsList,
         isEmpty: action.payload.isEmpty,
       };
 

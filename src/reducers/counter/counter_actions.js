@@ -7,7 +7,7 @@ import {
   SET_COUNT_BEGIN,
   SET_COUNT_SUCCESS,
   SET_COUNT_FAILURE,
-} from './constants';
+} from '../constants';
 const countKey = 'count';
 
 export function counterInitialize() {

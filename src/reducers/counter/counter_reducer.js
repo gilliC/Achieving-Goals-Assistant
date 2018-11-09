@@ -5,7 +5,7 @@ import {
   SET_COUNT_BEGIN,
   SET_COUNT_SUCCESS,
   SET_COUNT_FAILURE,
-} from './constants';
+} from '../constants';
 import {AsyncStorage} from 'react-native';
 const initialState = {
   count: '-1',

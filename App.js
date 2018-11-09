@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
 import {Provider} from 'react-redux';
 import {createDrawerNavigator} from 'react-navigation';
 import {Dimensions} from 'react-native';
@@ -10,7 +9,7 @@ import SideMenu from './src/SideMenu';
 
 const Navigator = createDrawerNavigator(
   {
-    Item1: {
+    mainApp: {
       screen: AppNavigator,
     },
   },
