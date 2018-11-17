@@ -10,6 +10,7 @@ export const AppView = styled.View`
   flex: 1;
   flex-direction: column;
   justify-content: ${props => (props.center ? 'center' : 'flex-start')};
+  background-color: white;
   border: 10px solid #70a9a1;
 `;
 
@@ -21,9 +22,10 @@ export const AlignRow = styled.View`
   align-self: center;
 `;
 export const ViewPadding = styled.View`
-  margin-left: ${props => props.marginleft || '0px'};
-  margin-right: ${props => props.marginright || '0px'};
+  padding-left: ${props => props.marginleft || '0px'};
+  padding-right: ${props => props.marginright || '0px'};
   flex-wrap: wrap;
+  background-color: white;
 `;
 
 /////// TITLES ///////

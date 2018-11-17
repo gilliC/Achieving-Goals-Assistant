@@ -11,6 +11,8 @@ import {
 } from '../components/general_components';
 import {AddGoal_View, AddGoal_Input} from '../components/profile_components';
 
+const modalHeight = '50%';
+
 export default class AddGoal extends Component {
   constructor(props) {
     super(props);
@@ -27,7 +29,8 @@ export default class AddGoal extends Component {
           isVisible: this.state.visible,
           duration: 500,
           onBackButtonPress: this.props.onClose,
-        }}>
+        }}
+        containerConfig={{height: modalHeight}}>
         <Formik
           initialValues={{goal: ''}}
           validate={values => {
@@ -59,6 +62,7 @@ export default class AddGoal extends Component {
               />
               <ErrorMSG name="goal" />
               <MainButton
+                inverted
                 text="Add"
                 width={250}
                 onPress={formikProps.handleSubmit}

@@ -32,7 +32,7 @@ export default class DeleteGoal extends Component {
           onBackButtonPress: this.props.onClose,
         }}
         containerConfig={{
-          height: '50%',
+          height: '55%',
           borderWidth: '3px',
         }}>
         <Title size="20px" font="ShadowsIntoLight">

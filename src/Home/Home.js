@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {View} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -80,8 +81,22 @@ class Home extends Component {
 
   render() {
     const {goalsList, pointsGoal, count, visible} = this.state;
+    const {isEmpty} = this.props;
     const progress = count / pointsGoal;
     const goalActive = Math.floor(Math.random() * goalsList.length);
+    let title;
+    if (isEmpty)
+      title = (
+        <View>
+          <Title size="20px" font="Mali-Bold" margin="2px">
+            New around here?
+          </Title>
+          <Title size="20px" font="Mali-Regular" margin="0px">
+            you can slide right and go to Instructions page
+          </Title>
+        </View>
+      );
+    else title = <Title>{goalsList[goalActive]}</Title>;
     return (
       <AppView center>
         <SuccessModal
@@ -89,7 +104,7 @@ class Home extends Component {
           onClose={this.changeVisible}
           goal={this.props.pointsGoal}
         />
-        <Title>{goalsList[goalActive]}</Title>
+        {title}
         <Title font="Rajdhani-Regular" size="100px">
           {parseInt(progress * 100)} %
         </Title>
@@ -136,6 +151,7 @@ const mapStateToProps = state => {
     count: state.count.count,
     goalsList: state.goalsList.goalsList,
     pointsGoal: state.pointsGoal.pointsGoal,
+    isEmpty: state.goalsList.isEmpty,
   };
 };
 
@@ -143,6 +159,7 @@ Home.propTypes = {
   goalsList: PropTypes.array,
   pointsGoal: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   count: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  isEmpty: PropTypes.bool,
   counterInitialize: PropTypes.func,
   counterIncrease: PropTypes.func,
   counterDecrease: PropTypes.func,

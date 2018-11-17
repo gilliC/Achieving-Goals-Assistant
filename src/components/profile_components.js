@@ -3,6 +3,7 @@ import {TextInput, KeyboardAvoidingView} from 'react-native';
 import styled from 'styled-components/native';
 
 import {Title} from './general_components';
+import {Formik, Field, ErrorMessage} from 'formik';
 
 /////// GOAL ITEM //////
 export const GoalItem_Text = styled(Title)`
@@ -11,9 +12,9 @@ export const GoalItem_Text = styled(Title)`
 
 /////// ADD GOAL //////
 export const AddGoal_View = styled.KeyboardAvoidingView`
-  min-height: 160px;
   background-color: white;
-  height: 35%;
+  height: 100%;
+  justify-content: center;
 `;
 
 export const AddGoal_Input = styled.TextInput`
